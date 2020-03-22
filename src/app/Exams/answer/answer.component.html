@@ -1,0 +1,7 @@
+<div class="answer" [ngClass]="{ 'right-answer': answer.isSelected && answer.isRight && exam.status == 'answered', 
+                                 'wrong-answer' : answer.isSelected && !answer.isRight && exam.status == 'answered',
+                                 'selected'    : answer.isSelected}"
+                                 (click)="onClick()">
+    <div class="answer-text">{{ answer.text }}</div>    
+</div>
+

@@ -1,0 +1,11 @@
+<div class="navigator">
+    <div class="button" [ngClass]="{'disabled': exam && exam.status == 'ready'}"
+        (click)="onAnswerSelected()">
+        {{getButtonText(exam.status)}}
+    </div>
+    <div *ngIf="exam" class="paging">
+        <div *ngFor="let question of exam.questions; let i = index" class="bullet"
+            [ngClass]="{'current':i <= exam.currentQuestionIndex}">
+        </div>
+    </div>
+</div>

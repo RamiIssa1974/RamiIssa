@@ -1,0 +1,8 @@
+<div class="question-text">
+    <span class="question-id">Q:{{question.id}}</span><span class="text">{{question.text}}</span>
+</div>
+<div class="answers">
+    <div *ngFor="let answer of question.answers" class="answer">
+        <app-answer [answer]="answer" [question]="question" [exam]="exam"></app-answer>
+    </div>
+</div>

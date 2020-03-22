@@ -1,0 +1,28 @@
+.question-text{
+    text-align: center;
+    font-family: sans-serif;
+    margin-bottom: 30px;
+}
+.question-text .question-id{
+    color: #0D7BAB;
+    font-size: 30px;
+    padding-right: 10px;
+    font-weight: bold;
+}
+.question-text .text{
+    color: #223336;
+    font-size: 25px;
+}
+
+.answer{
+    width: 50%;
+    display: inline-block;
+}
+// .answer:nth-child(2n+1){
+//     background-color: red;
+//     display: inline-block;
+// }
+// .answer:nth-child(2n){
+//     background-color: green;
+//     display: inline-block;
+// }

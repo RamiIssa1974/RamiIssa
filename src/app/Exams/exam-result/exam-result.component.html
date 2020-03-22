@@ -1,0 +1,17 @@
+<div class="container">
+    <div>
+        <strong>Your grade is: {{ getFinalGrade() | number:'1.2-2'}}</strong>
+    </div>
+    <div *ngIf="RightAnswers.length > 0">
+        <h2>Your right answered questions</h2>
+        <div *ngFor="let rightAnswer of RightAnswers" class="question-text">
+            <span class="question-id">Q:{{rightAnswer.id}}</span><span class="text">{{rightAnswer.text}}</span>
+        </div>
+    </div>
+    <div *ngIf="WrongAnswers.length > 0">
+        <h2>Your wrong answered questions</h2>
+        <div *ngFor="let wrongAnswer of WrongAnswers" class="question-text">
+            <span class="question-id">Q:{{wrongAnswer.id}}</span><span class="text">{{wrongAnswer.text}}</span>
+        </div>
+    </div>
+</div>

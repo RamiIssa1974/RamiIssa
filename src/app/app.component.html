@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="header">
+    <img src="assets/Logo.png" class="logo">
+  </div>
+  <div class="body">
+    <div *ngIf="exam && exam.status != 'finished'">
+      <div class="exam">
+        <app-question [question]="exam.currentQuestion" [exam]="exam"></app-question>
+      </div>
+    </div>
+    <div *ngIf="exam && exam.status != 'finished'">
+      <app-navigator [currentQuestionId]="currentQuestionId" [exam]="exam"></app-navigator>
+    </div>
+    <div *ngIf="exam && exam.status == 'finished'">
+      <app-exam-result [exam]="exam"></app-exam-result>
+    </div>
+  </div>
+  <div class="footer">
+    <img src="assets/HeaderBg.png">
+  </div>
+</div>
