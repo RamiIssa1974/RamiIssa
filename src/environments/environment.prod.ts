@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: false,
+  examsApi:'http://localhost:4200/app/api/Exams/exams.json'
 };

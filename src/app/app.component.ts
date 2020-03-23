@@ -14,20 +14,22 @@ export class AppComponent implements OnInit {
   title = 'ZoomExam';
   exam: IExam;
   examId: string = "1";
-  errorMessage: string = '';    
+  errorMessage: string = '';
   currentQuestionId: number = 1;
-  currentQuestion : IQuestion;
-  
+  currentQuestion: IQuestion;
+
   constructor(private examService: ExamsService) {
   }
   ngOnInit(): void {
+
+
     this.examService.getExams().subscribe(
       (data => {
-          this.exam = data.filter(itm => itm.id == this.examId)[0];
-          this.exam.status ='ready';
-          this.exam.currentQuestionIndex = 0; 
-          this.exam.currentQuestion = this.exam.questions[this.exam.currentQuestionIndex];         
-        })
+        this.exam = data.filter(itm => itm.id == this.examId)[0];
+        this.exam.status = 'ready';
+        this.exam.currentQuestionIndex = 0;
+        this.exam.currentQuestion = this.exam.questions[this.exam.currentQuestionIndex];
+      })
     );
   }
 }
