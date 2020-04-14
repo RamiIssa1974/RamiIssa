@@ -1,21 +1,23 @@
-<div class="container" >
+<div class="container" *ngIf="exam$ | async as exam">
   <div class="header">
     <img src="assets/Logo.png" class="logo">
   </div>
   <div class="body">
-    <div *ngIf="exam && exam.status != 'finished'">
-      <div class="exam">
-        <app-question [question]="exam.currentQuestion" [exam]="exam"></app-question>
+    <div *ngIf="currentQuestion$ | async as currentQuestion">        
+      <div *ngIf="examStatus != 'finished'">
+        <div class="exam">
+          <app-question [question]="currentQuestion"></app-question>
+        </div>
+      </div>
+      <div *ngIf="examStatus != 'finished'">
+        <app-navigator [exam]="exam"></app-navigator>
       </div>
     </div>
-    <div *ngIf="exam && exam.status != 'finished'">
-      <app-navigator [currentQuestionId]="currentQuestionId" [exam]="exam"></app-navigator>
-    </div>
-    <div *ngIf="exam && exam.status == 'finished'">
+    <div *ngIf="examStatus == 'finished'">
       <app-exam-result [exam]="exam"></app-exam-result>
     </div>
   </div>
   <div class="footer">
     <img src="assets/HeaderBg.png">
   </div>
-</div>
+</div> 

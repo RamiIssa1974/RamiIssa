@@ -1,10 +1,10 @@
 import { IQuestion } from './Question';
 
-export interface IExam {
-    name: string;
-    id: string;
-    questions: IQuestion[];
-    status: string;
-    currentQuestionIndex: number;
-    currentQuestion: IQuestion;
+export class IExam {
+    constructor(public name: string,
+                public id: string,
+                public questions: IQuestion[],
+                public currentQuestionIndex: number,
+                public currentQuestion: IQuestion) {
+                }
 }

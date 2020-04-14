@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IExam } from 'src/app/Entities/Exam';
 import { IQuestion } from 'src/app/Entities/Question';
+import { ExamsService } from 'src/app/api/Exams/exams.service';
 
 @Component({
   selector: 'app-exam-result',
@@ -10,29 +11,30 @@ import { IQuestion } from 'src/app/Entities/Question';
 export class ExamResultComponent implements OnInit {
 
   @Input() exam: IExam;
-  private _rightAnswers: IQuestion[];
-  private _wrongAnswers: IQuestion[];
+  private rightAnswers: IQuestion[];
+  private wrongAnswers: IQuestion[];
 
   public get RightAnswers(): IQuestion[] {
-    if (!this._rightAnswers) {
-      this._rightAnswers = this.exam.questions.filter(x => x.isAnsweredRight);
+    if (!this.rightAnswers) {
+      this.rightAnswers = this.exam.questions.filter(question => question.answers.find(answer => answer.isRight && answer.isChoosed));
     }
-    return this._rightAnswers;
+    return this.rightAnswers;
   }
 
   public get WrongAnswers(): IQuestion[] {
-    if (!this._wrongAnswers) {
-      this._wrongAnswers = this.exam.questions.filter(x => !x.isAnsweredRight);
+    if (!this.wrongAnswers) {
+      this.wrongAnswers = this.exam.questions.filter(question => question.answers.find(answer => answer.isRight && !answer.isChoosed));
     }
-    return this._wrongAnswers;
+    return this.wrongAnswers;
   }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
-  getFinalGrade(): number {    
-    return this.RightAnswers.length / this.exam.questions.length * 100;
+  getFinalGrade(): number {
+    return this.exam.questions.length ? this.RightAnswers.length / this.exam.questions.length * 100 : 0;
   }
 }

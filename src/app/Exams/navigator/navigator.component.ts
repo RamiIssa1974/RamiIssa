@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IExam } from 'src/app/Entities/Exam';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import * as examActions from '../state/exam.actions';
+import * as fromExam from '../state/exam.reducer';
 
 @Component({
   selector: 'app-navigator',
@@ -10,13 +14,20 @@ export class NavigatorComponent implements OnInit {
 
   ButtonText: string;
   @Input() exam: IExam;
-  @Input() currentQuestionId: IExam;
-  constructor() { }
+  examStatus = 'OK';
+  currentQuestionId = 0;
+  constructor(private store: Store<fromExam.ExamState>) { }
 
   ngOnInit(): void {
+    this.store.pipe(select(fromExam.getExamStatus)).subscribe(
+      status => this.examStatus = status
+    );
+    this.store.pipe(select(fromExam.getCurrenQuestion)).subscribe(
+      question => this.currentQuestionId = question.id
+    );
   }
-  getButtonText(status: string): string {
-    switch (status) {
+  getButtonText(): string {
+    switch (this.examStatus) {
       case 'ready':
         return 'OK';
       case 'selected':
@@ -29,10 +40,12 @@ export class NavigatorComponent implements OnInit {
   }
 
   onAnswerSelected() {
-    if (this.exam.status == 'answered') {
-      this.exam.currentQuestionIndex++;
-      this.exam.currentQuestion = this.exam.questions[this.exam.currentQuestionIndex];
+    if (this.examStatus !== 'ready') {
+      if (this.examStatus === 'answered') {
+        this.store.dispatch(new examActions.GetNextQuestion());
+      } else {
+        this.store.dispatch(new examActions.AnswerQuestion());
+      }
     }
-    this.exam.status = this.exam.status == 'selected' ? 'answered' : (this.exam.currentQuestionIndex < this.exam.questions.length ? 'ready' : 'finished');
   }
 }

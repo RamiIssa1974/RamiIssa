@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ExamsService } from './api/Exams/exams.service';
-import { IExam } from './Entities/Exam';
-import { Observable } from 'rxjs';
 import { IQuestion } from './Entities/Question';
-
+import { Store, select } from '@ngrx/store';
+import * as examActions from './Exams/state/exam.actions';
+import * as fromExam from './Exams/state/exam.reducer';
+import { Observable } from 'rxjs';
+import { IExam } from './Entities/Exam';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,24 +13,27 @@ import { IQuestion } from './Entities/Question';
 
 export class AppComponent implements OnInit {
   title = 'ZoomExam';
-  exam: IExam;
-  examId: string = "1";
-  errorMessage: string = '';
-  currentQuestionId: number = 1;
-  currentQuestion: IQuestion;
+  exam$: Observable<IExam>;
+  examStatus: string;
+  currentQuestion$: Observable<IQuestion>;
+  examId = '1';
+  errorMessage = '';
+  currentQuestionId = 0;
+  errorMessage$: Observable<string>;
 
-  constructor(private examService: ExamsService) {
-  }
+  constructor(private store: Store<fromExam.ExamState>) { }
+
   ngOnInit(): void {
-
-
-    this.examService.getExams().subscribe(
-      (data => {
-        this.exam = data.filter(itm => itm.id == this.examId)[0];
-        this.exam.status = 'ready';
-        this.exam.currentQuestionIndex = 0;
-        this.exam.currentQuestion = this.exam.questions[this.exam.currentQuestionIndex];
-      })
+    this.store.dispatch(new examActions.LoadExam());
+    this.errorMessage$ = this.store.pipe(select(fromExam.getError));
+    this.exam$ = this.store.pipe(select(fromExam.getExam));
+    this.currentQuestion$ = this.store.pipe(select(fromExam.getCurrenQuestion));
+    this.errorMessage$ = this.store.pipe(select(fromExam.getError));
+    this.store.pipe(select(fromExam.getExamStatus)).subscribe(
+      status => {
+        this.examStatus = status;
+      }
     );
   }
 }
+

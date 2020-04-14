@@ -1,7 +1,7 @@
 .navigator .button.disabled{ 
     background-color: #F0F0F0; 
 }
-.navigator .button:hover{
+.navigator .button:not(.disabled):hover{
     background-color: #F68034;
 }
 .navigator .button{

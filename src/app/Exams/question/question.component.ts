@@ -8,7 +8,6 @@ import { IExam } from 'src/app/Entities/Exam';
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
-  @Input() exam: IExam;
   @Input() question: IQuestion;
   constructor() { }
 

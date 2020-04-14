@@ -1,8 +1,11 @@
 import { IAnswer } from './Answer';
 
-export interface IQuestion {
-    id: number;
-    text: string;
-    answers: IAnswer[];
-    isAnsweredRight: boolean;
+export class IQuestion {
+    constructor(
+        public id: number,
+        public text: string,
+        public answers: IAnswer[],
+        public isAnsweredRight: boolean) {
+
+    }
 }

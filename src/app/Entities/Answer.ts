@@ -1,6 +1,7 @@
-export interface IAnswer {
+export class IAnswer {
+    id: number;
     text: string;
+    isChoosed: boolean;
     isRight: boolean;
-    isAnsweredRight : boolean;
-    isSelected : boolean;
+    isSelected: boolean;
 }

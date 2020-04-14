@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IAnswer } from 'src/app/Entities/Answer';
-import { IExam } from 'src/app/Entities/Exam';
-import { IQuestion } from 'src/app/Entities/Question';
+import { ExamsService } from 'src/app/api/Exams/exams.service';
+import { Store, select } from '@ngrx/store';
+import * as examActions from '../state/exam.actions';
+import * as fromExam from '../state/exam.reducer';
 
 @Component({
   selector: 'app-answer',
@@ -9,25 +11,21 @@ import { IQuestion } from 'src/app/Entities/Question';
   styleUrls: ['./answer.component.scss']
 })
 export class AnswerComponent implements OnInit {
-
   @Input() answer: IAnswer;
-  @Input() question: IQuestion;  
-  @Input() exam: IExam;
+  examStatus = 'OK';
+  isSelected = false;
 
-  isSelected: boolean = false;
-  constructor() { }
+  constructor(private store: Store<fromExam.ExamState>) { }
 
   ngOnInit(): void {
+    this.store.pipe(select(fromExam.getExamStatus)).subscribe(
+      status => this.examStatus = status
+    );
   }
 
-  onClick() {   
-    this.question.answers.forEach(answer=> {
-      answer.isSelected = false;
-      answer.isAnsweredRight = false;
-    });
-    this.answer.isSelected = true;
-    this.answer.isAnsweredRight = this.answer.isRight;
-    this.question.isAnsweredRight = this.answer.isRight;
-    this.exam.status = 'selected';
+  onClick() {
+    if (this.examStatus === 'ready' || this.examStatus === 'selected') {
+      this.store.dispatch(new examActions.SelectAnswer(this.answer.id));
+    }
   }
 }

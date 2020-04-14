@@ -1,77 +1,96 @@
-[
-    {
-        "id": "1",
-        "name": "Biology Final Exam",
-        "questions": [
-            {
-                "id": 1,
-                "text": "Wich sea creature has three hearts?",
-                "isAnsweredRight": false,
-                "answers": [
-                    {
-                        "text": "Octopus",
-                        "isRight": true
-                    },
-                    {
-                        "text": "Giant squid",
-                        "isRight": false
-                    },
-                    {
-                        "text": "jellyfish",
-                        "isRight": false
-                    },
-                    {
-                        "text": "Nudirbranch",
-                        "isRight": false
-                    }
-                ]
-            },
-            {
-                "id": 2,
-                "text": "How many rooms in humans heart?",
-                "isAnsweredRight": false,
-                "answers": [
-                    {
-                        "text": "One",
-                        "isRight": false
-                    },
-                    {
-                        "text": "Two",
-                        "isRight": false
-                    },
-                    {
-                        "text": "Three",
-                        "isRight": false
-                    },
-                    {
-                        "text": "Four",
-                        "isRight": true
-                    }
-                ]
-            },
-            {
-                "id": 3,
-                "text": "Wich of the following is from mammals?",
-                "isAnsweredRight": false,
-                "answers": [
-                    {
-                        "text": "Bee",
-                        "isRight": false
-                    },
-                    {
-                        "text": "Dog",
-                        "isRight": true
-                    },
-                    {
-                        "text": "Snake",
-                        "isRight": false
-                    },
-                    {
-                        "text": "Snail",
-                        "isRight": false
-                    }
-                ]
-            }
-        ]
-    }
-]
+{
+    "id": "1",
+    "name": "Biology Final Exam",
+    "questions": [
+        {
+            "id": 0,
+            "text": "Wich sea creature has three hearts?",
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Octopus",
+                    "isRight": true,
+                    "isChoosed": false
+                },
+                {
+                    "id": 2,
+                    "text": "Giant squid",
+                    "isRight": false,
+                    "isChoosed": false
+                },
+                {
+                    "id": 3,
+                    "text": "jellyfish",
+                    "isRight": false,
+                    "isChoosed": false
+                },
+                {
+                    "id": 4,
+                    "text": "Nudirbranch",
+                    "isRight": false,
+                    "isChoosed": false
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "text": "How many rooms in humans heart?",
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "One",
+                    "isRight": false,
+                    "isChoosed": false
+                },
+                {
+                    "id": 2,
+                    "text": "Two",
+                    "isRight": false,
+                    "isChoosed": false
+                },
+                {
+                    "id": 3,
+                    "text": "Three",
+                    "isRight": false,
+                    "isChoosed": false
+                },
+                {
+                    "id": 4,
+                    "text": "Four",
+                    "isRight": true,
+                    "isChoosed": false
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "text": "Wich of the following is from mammals?",
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Bee",
+                    "isRight": false,
+                    "isChoosed": false
+                },
+                {
+                    "id": 2,
+                    "text": "Dog",
+                    "isRight": true,
+                    "isChoosed": false
+                },
+                {
+                    "id": 3,
+                    "text": "Snake",
+                    "isRight": false,
+                    "isChoosed": false
+                },
+                {
+                    "id": 4,
+                    "text": "Snail",
+                    "isRight": false,
+                    "isChoosed": false
+                }
+            ]
+        }
+    ]
+}
